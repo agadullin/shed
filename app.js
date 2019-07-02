@@ -1,15 +1,18 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 const fs = require("fs");
 
 const authRouter = require("./routes/authRoutes.js");
 const mainRouter = require("./routes/mainRoutes.js");
+const userRouter = require("./routes/userRoute.js");
 
 app.use("/auth", authRouter);
 app.use("/main", mainRouter);
+app.use("/user", userRouter);
 
 app.get("/about", function(request, response){
-    response.sendfile("./views/main.hbs");
+    response.render("./views/main.hbs");
 })
 
 app.get("/", function(request,response){
