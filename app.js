@@ -1,25 +1,23 @@
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-const fs = require("fs");
-
-const authRouter = require("./routes/authRoutes.js");
-const mainRouter = require("./routes/mainRoutes.js");
-const userRouter = require("./routes/userRoute.js");
+const express = require('express'),
+      bodyParser = require('body-parser'),
+      authRouter = require("./routes/authRoutes.js"),
+      mainRouter = require("./routes/mainRoutes.js"),
+      userRouter = require("./routes/userRoute.js"),
+      app = express();
 
 app.use("/auth", authRouter);
 app.use("/main", mainRouter);
 app.use("/user", userRouter);
 
 app.get("/about", function(request, response){
-    response.render("./views/main.hbs");
-})
+    response.render("main.hbs");
+});
 
 app.get("/", function(request,response){
     response.send("index");
-})
+});
 
 app.use(function (req, res) {
-    res.status(404).send("Not found");
+    res.status(404).send("Not found")
 });
 app.listen(3000);
