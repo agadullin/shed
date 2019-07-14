@@ -1,4 +1,5 @@
-const User = require("../models/customer.js");
+const User = require("../models/customer.js"),
+      database = require("../mysql/connection.js");
 
 exports.addUser = function (request, response){
     response.render("create.hbs");
@@ -9,9 +10,9 @@ exports.getUsers = function(request, response){
     });
 };
 exports.postUser= function(request, response){
-    const username = request.body.name;
-    const userage = request.body.age;
-    const user = new User(username, userage);
-    user.save();
+    const login = request.body.login;
+    const password = request.body.password;
+    var arr = [login, password];
+    database.insert(arr);
     response.redirect("/users");
 };

@@ -3,7 +3,11 @@ const express = require('express'),
       authRouter = require("./routes/authRoutes.js"),
       mainRouter = require("./routes/mainRoutes.js"),
       userRouter = require("./routes/userRoute.js"),
+      database = require("./mysql/connection.js"),
       app = express();
+
+app.set("view engine", "hbs");
+app.use(bodyParser.urlencoded({extended:false}));
 
 app.use("/auth", authRouter);
 app.use("/main", mainRouter);
