@@ -15,11 +15,26 @@ var connection = mysql.createConnection({
 const database = {
 
       insert : (arr) => {
-                      var sql = 'INSERT INTO table_test(login, password) VALUES(?,?)';
+                      let sql = 'INSERT INTO table_test(login, password) VALUES(?,?)';
                       connection.query(sql, arr, (err, result) => {
                       if (err) console.log(err);
                       console.log(result);
                       })
+      },
+
+
+
+
+
+      selectTabletest: (res,from) => {
+          let sql = 'SELECT * FROM table_test';
+          connection.query(sql, function (err, results) {
+              if(err){
+                  console.log(err);
+              }
+              console.log(results);
+              res.render(from,{ "results":results });
+          });
       }
 };
 
