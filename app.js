@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 app.use("/auth", authRouter);
 app.use("/main", mainRouter);
-app.use("/user", userRouter);
+app.use("/users", userRouter);
 
 app.get("/about", function(request, response){
     response.render("main.hbs");
